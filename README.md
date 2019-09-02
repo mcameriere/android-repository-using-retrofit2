@@ -2,7 +2,7 @@
 
 Unit testing how to make an *asynchronous* Retrofit call *synchronous* in the unit tests ?
 
-## Add Library Dependencies for Retrofit
+## Add Library Dependencies
 
     dependencies {
         ...
