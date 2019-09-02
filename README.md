@@ -20,11 +20,13 @@ Unit testing how to make an *asynchronous* Retrofit call *synchronous* in the un
 
 For some obscure reason it also allows you to use the following:
 
-    Callback<GroupedInvestmentProductsResponse> callback = invocation.getArgument(0);
+    Callback<GroupedInvestmentProductsResponse> callback =
+        invocation.getArgument(0);
     
 instead of the ugly casting:
 
-    Callback<GroupedInvestmentProductsResponse> callback = (Callback<GroupedInvestmentProductsResponse>) invocation.getArguments()[0]
+    Callback<GroupedInvestmentProductsResponse> callback = 
+        (Callback<GroupedInvestmentProductsResponse>) invocation.getArguments()[0]
 
 ## Adding org.mockito:mockito-core:1.10.19 allows you to use Mockito static methods like:
 
