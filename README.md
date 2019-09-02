@@ -1,7 +1,7 @@
 # android-repository-using-retrofit2
 Repository using Retrofit2
 
-## Add Library Dependencies to 'app' module
+## Add Library Dependencies for Retrofit
 
     dependencies {
         ...
@@ -11,4 +11,41 @@ Repository using Retrofit2
         testImplementation 'org.mockito:mockito-core:1.10.19'
         testImplementation 'android.arch.core:core-testing:1.1.1'
     }
+
+## Add Library Dependencies for unit testing
+
+Adding android.arch.code-core-testing:1.1.1 allows you to add the following to the RepositoryTest class:
+
+    @Rule
+    public InstantTaskExecutorRule instantTaskExecutor = new InstantTaskExecutorRule();
+
+For some obscure reason it also allows you to use
+
+    Callback<GroupedInvestmentProductsResponse> callback = invocation.getArgument(0);
+    
+instead of the ugly casting
+
+    Callback<GroupedInvestmentProductsResponse> callback = (Callback<GroupedInvestmentProductsResponse>) invocation.getArguments()[0]
+
+
+Adding org.mockito:mockito-core:1.10.19 allows you to use Mockito static methods like:
+
+### mock
+
+    WebService webService = mock(WebService.class);
+
+### when
+
+    when(webService.getGroupedInvestmentProducts()).thenReturn(mockedCall);
+
+### doAnswer and any
+
+    doAnswer(new Answer() {
+        @Override
+        public Object answer(InvocationOnMock invocation) {
+            Callback<GroupedInvestmentProductsResponse> callback = invocation.getArgument(0);
+            callback.onResponse(mockedCall, Response.success(aFakeResponse()));
+            return null;
+        }
+    }).when(mockedCall).enqueue(any(Callback.class));
 
