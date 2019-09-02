@@ -1,6 +1,6 @@
 # android-repository-using-retrofit2
 
-Unit testing how to make an *asynchronous* Retrofit call *synchronous* in the unit tests ?
+How to make an *asynchronous* Retrofit call *synchronous* in the unit tests ?
 
 ## Add Library Dependencies
 
